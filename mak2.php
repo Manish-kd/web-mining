@@ -7,10 +7,10 @@ $start = "https://www.w3schools.com/";
 $dbhost="localhost";
   $dbuser="root";
   $dbpass="";
-  $dbname="web-mining";
+  $dbname="webmining";
   $connection=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
   if(mysqli_connect_errno()){
-    die("Database connection failed:".mysqli_conect_error()."(".mysqli_connect_errorno().")"
+    die("Database connection failed:"
       );
   }
 
@@ -21,7 +21,7 @@ $result=mysqli_query($connection,$query);
     else
       $contact="failure";
   echo "hello";
-				
+
 
 
 
@@ -37,7 +37,7 @@ function get_details($url) {
 	$options = array('http'=>array('method'=>"GET", 'headers'=>"User-Agent: makbot\n"));
 	$context = stream_context_create($options);
 	$doc = new DOMDocument();
-	
+
 	@$doc->loadHTML(@file_get_contents($url, false, $context));
 
 	$title = $doc->getElementsByTagName("title");
@@ -85,18 +85,18 @@ function follow_links($url) {
 		if (!in_array($l, $already_crawled)) {
 				$already_crawled[] = $l;
 				$crawling[] = $l;
-				
+
 				echo get_details($l)."<p></p>";
-	
+
  // 	$query="INSERT INTO frontier(title,description,keyword,url) values('{$title}','{$description}','{$keyword}','{$url}');";
 
-    
-				
-				
+
+
+
 		}
 
 	}
-	
+
 
 	array_shift($crawling);
 	foreach ($crawling as $site) {
